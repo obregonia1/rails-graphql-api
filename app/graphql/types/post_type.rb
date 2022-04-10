@@ -7,6 +7,6 @@ module Types
     field :body, String, null: false
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :comments, Types::CommentType
+    field :comments, [Types::CommentType], null: false
   end
 end
