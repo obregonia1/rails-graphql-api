@@ -4,13 +4,6 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :post, Types::PostType, null: false do
-      description 'Find a post by ID'
-      argument :id, ID, required: true
-    end
-
-    def post(id:)
-      Post.find(id)
-    end
+    field :post, resolver: Resolvers::PostResolver
   end
 end
