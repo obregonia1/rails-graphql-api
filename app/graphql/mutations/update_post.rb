@@ -1,14 +1,12 @@
 module Mutations
   class UpdatePost < BaseMutation
-    # TODO: define return fields
-    # field :post, Types::PostType, null: false
+    argument :params, Types::Inputs::PostInputType, required: true
 
-    # TODO: define arguments
-    # argument :name, String, required: true
-
-    # TODO: define resolve method
-    # def resolve(name:)
-    #   { post: ... }
-    # end
+    def resolve(params:)
+      post_params = params.to_h
+      post = Post.find(post_params.delete(:id))
+      post.update!(post_params.compact)
+      post
+    end
   end
 end
